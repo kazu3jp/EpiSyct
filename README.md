@@ -1,4 +1,4 @@
-![EpiSyct](image\EpiSyct-logo-144.png)  
+![EpiSyct](https://kazu3jp.github.io/EpiSyct/image\EpiSyct-logo-144.png)  
 
 # EpiSyct for Annict
 [EpiSyct](https://episyct.com) は、見てるアニメのエピソード記録に特化したAnnict非公式クライアントです。  
