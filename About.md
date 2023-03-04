@@ -11,7 +11,7 @@
    発行方法は[こちら](https://developers.annict.com/docs/authentication/personal-access-token)
 
 2. EpiSyctに戻り作成したトークンを入力してログインボタンを押してください。
-   > **Warning**
+   > **Warning**  
    >ログインに失敗する場合はトークンが間違っている可能性があります。
 
 3. ログインに成功するとAnnictでステータスが｢見てる｣に設定しているアニメが表示されます。
@@ -39,10 +39,10 @@
 <summary>回答</summary>
 
 1. 記録したい話数にある｢記録する｣ボタンを押すと記録されます。
-   > **Note**
+   > **Note**  
    > エピソードが無い場合は｢見た｣ステータスに変更するボタンが表示されます。
 
-   > **Warning**
+   > **Warning**  
    >記録に失敗する場合はトークンのスコープが｢読み込み + 書き込み｣で作成されていない可能性があります。
 
    ![｢記録する｣ボタン](https://kazu3jp.github.io/EpiSyct/image/About/Watch-button.png)
@@ -53,7 +53,7 @@
 <summary>回答</summary>
 
 1. ｢記録する｣ボタンの下にある下矢印を押すとほかのエピソードが表示されます。
-   > **Note**
+   > **Note**  
    > ほかのエピソードが無い場合は表示されません。
 
    ![ほかのエピソード表示ボタンの場所](https://kazu3jp.github.io/EpiSyct/image/About/Other-episode-menu.png)
@@ -71,7 +71,7 @@
 <summary>回答</summary>
 
 - Annictで変更したことをEpiSyctに反映したい場合は、左上のアイコンを押すとデータが更新されて反映されます。
-   > **Note**
+   > **Note**  
    > ・サイトに再度アクセスするときに自動で更新されます。  
    > ・スマホやタブレットでアプリのように使用している場合は、タスクキルしてから再度アクセスするときに自動で更新されます。
    
@@ -101,7 +101,7 @@
    ![追加ボタンの場所とホームに追加された画像](https://kazu3jp.github.io/EpiSyct/image/About/PWA/iOS/iPhone-3&4.png)
 
 4. ほかのアプリと同じように起動してお使い下さい。
-   > **Note**
+   > **Note**  
    > 再度ログインが必要です。
 </details>
 
@@ -110,7 +110,7 @@
 <summary>回答</summary>
 
 1. ChromeでEpiSyctのページを開いてください。
-   > **Note**
+   > **Note**  
    > PWAに対応しているほかのブラウザでも可能です。
 
 2. 下部に出てきた｢ホーム画面に EpiSyct を追加｣を押します。
@@ -122,7 +122,7 @@
    ![インストールを押す](https://kazu3jp.github.io/EpiSyct/image/About/PWA/Android/Android-2.png)
    
 4. ほかのアプリと同じように起動してお使い下さい。
-   > **Note**
+   > **Note**  
    > 再度ログインが必要です。
 </details>
 
@@ -131,7 +131,7 @@
 <summary>回答</summary>
 
 1. ChromeでEpiSyctのページを開いてください。
-   > **Note**
+   > **Note**  
    > PWAに対応しているほかのブラウザでも可能です。
 
 2. 右上にあるアプリインストールボタンを押します。
@@ -139,7 +139,7 @@
    ![アプリインストールボタン](https://kazu3jp.github.io/EpiSyct/image/About/PWA/PC/PC-1.png)
 
 3. インストールを押すと別のウィンドウでアプリが開きます。
-   > **Note**
+   > **Note**  
    > 再度ログインが必要です。
    
    ![インストールを押す](https://kazu3jp.github.io/EpiSyct/image/About/PWA/PC/PC-2.png)
