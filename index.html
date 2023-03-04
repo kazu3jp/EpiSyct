@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css\loading.css">
+    <link rel="stylesheet" type="text/css" href="css\index.css">
+    <link rel="icon" href="image\favicon.ico">
+    <title>EpiSyct for Annict</title>
+    <meta name="author" content="ZoFaX_X">
+    <meta name="description" content="EpiSyctは見てるアニメのエピソード記録に特化したAnnict非公式クライアントです。">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="apple-touch-icon" href="image\EpiSyct-logo-144.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="manifest" href="PWA/manifest.json">
+    <script>
+        window.addEventListener('load', function () {
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/sw.js').then(registration => {
+                    console.log('ServiceWorker registration successful.');
+                }).catch(err => {
+                    console.log('ServiceWorker registration failed.');
+                });
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <header class="header" id="header">
+        <div class="header-inner">
+            <div class="logo">
+                <a href="/?id=0">
+                    <img class="img" src="image\EpiSyct-logo-144.png">
+                </a>
+            </div>
+            <div class="logout-button">
+                <button class="logout_button" onclick="logout(); disabled = true;" style="display: none;">
+                    <svg class="logout" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                        viewBox="0 0 24 24">
+                        <style>
+                            .logout {
+                                animation: logout-right 1s cubic-bezier(1, -0.17, 0.29, 0.99) infinite alternate both;
+                            }
+
+                            @keyframes logout-right {
+                                0% {
+                                    transform: translateX(0);
+                                }
+
+                                100% {
+                                    transform: translateX(2px);
+                                }
+                            }
+                        </style>
+                        <path stroke="#0A0A30" stroke-linecap="round" stroke-width="1.5"
+                            d="M14.5 14.508V17a2.5 2.5 0 01-2.5 2.5H7A2.5 2.5 0 014.5 17V7A2.5 2.5 0 017 4.5h5A2.5 2.5 0 0114.5 7v2.563" />
+                        <path class="logout" fill="#265BFF"
+                            d="M10.333 12.75a.75.75 0 010-1.5v1.5zm8.66-1.5a.75.75 0 010 1.5v-1.5zm-2.551-1.216a.75.75 0 111.054-1.068l-1.054 1.068zM19.5 12l.527-.534a.75.75 0 010 1.068L19.5 12zm-2.004 3.034a.75.75 0 11-1.054-1.068l1.054 1.068zm-7.163-3.784h8.66v1.5h-8.66v-1.5zm7.163-2.284l2.531 2.5-1.054 1.068-2.531-2.5 1.054-1.068zm2.531 3.568l-2.531 2.5-1.054-1.068 2.531-2.5 1.054 1.068z" />
+                    </svg>
+                    <span class="watch_button_msg" id="watch_button_msg">ログアウト</span>
+                </button>
+            </div>
+            <div class="menu_header_box">
+                <a class="menu">
+                    <span class="menu_line menu_line_top"></span>
+                    <span class="menu_line menu_line_center"></span>
+                    <span class="menu_line menu_line_bottom"></span>
+                </a>
+            </div>
+        </div>
+        <nav class="menu_nav">
+            <div class="menu_box">
+                <ul class="menu_box_list" id="menu_box_list">
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <article>
+            <div id="loading">
+                <div class="wrapper">
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="circle"></div>
+                    <div class="shadow"></div>
+                    <div class="shadow"></div>
+                    <div class="shadow"></div>
+                </div>
+            </div>
+        </article>
+        <div class="no_token" id="no_token">
+            <a style="display: block;">個人用アクセストークンでログイン</a>
+            <a style="font-size: 12px; display: block;">トークンのスコープは｢読み込み + 書き込み｣で作成してください</a>
+            <a style="font-size: 12px; display: block;">ログアウトするまでトークン情報は保存されます。</a>
+            <a style="font-size: 12px; display: block; color: whitesmoke" href="｜｜｜｜｜｜｜｜｜｜｜｜｜｜｜｜｜｜ここにgithubのREADMEのURL入れる。｜｜｜｜｜｜｜｜｜｜｜｜｜｜｜｜｜｜｜｜｜｜｜｜">このサイトの使い方</a>
+            <a id="error_msg" style="display: none; color: red;">トークンが正しくないようです。</a>
+            <a id="logout_msg" style="display: none; color: green;">ログアウトしました！</a>
+            <div class="token-input">
+                <input placeholder="トークンを入力…" class="token-input-field" type="text" name="token-fome-input"
+                    id="token-fome-input" size="40">
+                <label for="token-input-field" class="token-input-label">・個人用アクセストークン</label>
+                <span class="token-input-highlight"></span>
+            </div>
+            <input type="button" class="token_fome_button" value="---ログイン---" onclick="token_fome_button()">
+        </div>
+        <div class="none_watch" id="none_watch">
+            <a>Annictでステータスが「見てる」のアニメがありません。</a>
+        </div>
+        <div class="episode_back" id="episode_back">
+            <div class="left_box">
+                <div class="img_card">
+                    <img id="img">
+                </div>
+                <div class="top_episode_card">
+                    <div class="title">
+                        <p id="title"></p>
+                    </div>
+                    <div class="top_episode">
+                        <div class="top_episode_number">
+                            <p id="top_episode_number"></p>
+                        </div>
+                        <div class="top_episode_title">
+                            <p id="top_episode_title"></p>
+                        </div>
+                        <div class="top_episode_button">
+                            <button class="watch_work_button" id="watch_work_button"
+                                onclick="watch_work(); disabled = true;" style="display: none;">
+                                <svg class="tick" id="tick" viewBox="0 0 15 15" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg" width="15" height="15">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M14.707 3L5.5 12.207.293 7 1 6.293l4.5 4.5 8.5-8.5.707.707z"
+                                        fill="currentColor">
+                                    </path>
+                                </svg>
+                                <span class="watch_button_msg" id="watch_work_button_msg">ステータスを｢見た｣にする</span>
+                            </button>
+                            <button class="watch_episode_button" id="watch_episode_button"
+                                onclick="watch_episode(0); disabled = true;">
+                                <svg class="tick" id="tick" viewBox="0 0 15 15" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg" width="15" height="15">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M14.707 3L5.5 12.207.293 7 1 6.293l4.5 4.5 8.5-8.5.707.707z"
+                                        fill="currentColor">
+                                    </path>
+                                </svg>
+                                <span class="watch_button_msg" id="watch_button_msg_0">記録する</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="right_box" id="right_box">
+                <div id="other_episode_card" class="other_episode_card">
+                    <hr size="1px" width="90%" color="#bbb">
+                </div>
+                <div class="other_episode_card_open" id="other_episode_card_open">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                        viewBox="0 0 24 24">
+                        <style>
+                            .slide-11 {
+                                animation: slide-11 1s infinite alternate both cubic-bezier(1, -0.01, 0, 0.98);
+                            }
+
+                            @keyframes slide-11 {
+                                100% {
+                                    transform: translateY(2px)
+                                }
+                            }
+                        </style>
+                        <path class="slide-11" fill="#F0F0F4"
+                            d="M6.832 10.516a.857.857 0 111.097-1.317l4.594 3.828L17.117 9.2a.857.857 0 011.098 1.317l-5.132 4.276a.853.853 0 01-.933.123.85.85 0 01-.187-.123l-5.131-4.276z" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios@0.21.1/dist/axios.min.js"></script>
+<script src="js/graphql-query.js"></script>
+<script src="js/annict-data.js"></script>
+<script src="js/other-works.js"></script>
+<script src="js/other-episode.js"></script>
+<script src="js/index.js"></script>
+
+</html>

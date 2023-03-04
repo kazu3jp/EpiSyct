@@ -1,0 +1,15 @@
+{
+    "name": "EpiSyct for Annict",
+    "short_name": "EpiSyct",
+    "start_url": "/index.html?id=0",
+    "display": "standalone",
+    "theme_color": "#282828",
+    "background_color": "#282828",
+    "icons": [
+        {
+            "src": "../image/EpiSyct-logo-144.png",
+            "sizes": "144x144",
+            "type": "image/png"
+        }
+    ]
+}
