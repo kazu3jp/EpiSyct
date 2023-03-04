@@ -25,6 +25,15 @@
             }
         });
     </script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0DPLH0R36X"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-0DPLH0R36X');
+    </script>
 </head>
 
 <body>
@@ -94,7 +103,8 @@
             <a style="display: block;">個人用アクセストークンでログイン</a>
             <a style="font-size: 12px; display: block;">トークンのスコープは｢読み込み + 書き込み｣で作成してください</a>
             <a style="font-size: 12px; display: block;">ログアウトするまでトークン情報は保存されます。</a>
-            <a style="font-size: 12px; display: block; color: whitesmoke" href="https://github.com/kazu3jp/EpiSyct/blob/main/About.md">このサイトの使い方</a>
+            <a style="font-size: 12px; display: block; color: whitesmoke"
+                href="https://github.com/kazu3jp/EpiSyct/blob/main/About.md">このサイトの使い方</a>
             <a id="error_msg" style="display: none; color: red;">トークンが正しくないようです。</a>
             <a id="logout_msg" style="display: none; color: green;">ログアウトしました！</a>
             <div class="token-input">
