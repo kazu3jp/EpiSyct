@@ -73,10 +73,14 @@ window.addEventListener('load', function () {
             annict_data(localStorage.getItem('token'), 0)
         }
     } else {
-        episode_back.style.display = "none";
-        none_watch.style.display = "none";
-        no_token.style.display = "";
-        header.style.display = "none";
+        if (localStorage.getItem('token') !== null) {
+            annict_data(localStorage.getItem('token'), 0)
+        } else {
+            episode_back.style.display = "none";
+            none_watch.style.display = "none";
+            no_token.style.display = "";
+            header.style.display = "none";
+        }
     }
     setTimeout(function () {
         spinner.classList.add('loaded');

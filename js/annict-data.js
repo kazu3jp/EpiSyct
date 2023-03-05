@@ -12,6 +12,7 @@ function annict_data(token, id) {
                     no_token.style.display = "";
                     error_msg.style.display = "block";
                     logout_msg.style.display = "none";
+                    localStorage.clear();
                 });
         } catch {
             episode_back.style.display = "none";
@@ -19,8 +20,10 @@ function annict_data(token, id) {
             no_token.style.display = "";
             error_msg.style.display = "block";
             logout_msg.style.display = "none";
+            localStorage.clear();
         }
     } else {
+        localStorage.clear();
         window.location.replace("/");
     }
 }
