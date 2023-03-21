@@ -57,6 +57,8 @@ window.addEventListener('load', function () {
                         document.getElementById("top_episode_title").innerHTML = (annictdata_episodes[0].title == null) ? "" : annictdata_episodes[0].title;
                         if (annictdata_episodes.length == 1) {
                             other_episode_card_open.style.display = "none";
+                            other_episode_card.style.display = "none";
+                            right_box.style.display = "none";
                         } else {
                             other_episode(annictdata_episodes.length, annictdata_episodes);
                         }

@@ -1,7 +1,9 @@
-function other_episode(epi_num,annictdata_episodes_data) {
+function other_episode(epi_num, annictdata_episodes_data) {
     var other_episode_card = document.getElementById('other_episode_card')
+    var in_other_episode_hr = `<hr size="1px" width="90%" color="#bbb">`
+    other_episode_card.insertAdjacentHTML('beforeend', in_other_episode_hr);
     for (i = 1; i < epi_num; i++) {
-        episode_title = (annictdata_episodes_data[i].title == null ) ? "" : annictdata_episodes_data[i].title
+        episode_title = (annictdata_episodes_data[i].title == null) ? "" : annictdata_episodes_data[i].title
         var in_other_episode = `<ul class="other_episode_list">
         <li class="list_episode_number">─${annictdata_episodes_data[i].numberText}─</li>
         <li class="list_episode_title">${episode_title}</li>
