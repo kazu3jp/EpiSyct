@@ -158,7 +158,7 @@ function watch_work() {
         axios.post("https://api.annict.com/graphql", { query: `mutation{updateStatus(input: {workId: "${annictdata.viewer.works.nodes[inpid].id}",state: WATCHED}) {work{annictId}}}` }, { headers: { Authorization: "bearer " + token } },)
             .then(() => {
                 document.getElementById("watch_work_button_msg").innerHTML = "変更しました！";
-                annict_data(localStorage.getItem('token'), inpid)
+                annict_data(localStorage.getItem('token'), 0)
             })
             .catch(() => {
                 document.getElementById("watch_work_button_msg").innerHTML = "変更できませんでした…";
