@@ -27,7 +27,7 @@ window.addEventListener('load', function () {
                     //メニュー
                     other_works(annictdata);
                     //imgが有効か
-                    checkIfImageExists(annictdata.viewer.works.nodes[inpid].image.recommendedImageUrl)
+                    checkIfImageExists(annictdata.viewer.works.nodes[inpid].image.facebookOgImageUrl)
                         .then((url) => {
                             document.getElementById("img").src = url;
                         })
