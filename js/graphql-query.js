@@ -1,4 +1,4 @@
-var top_query
+var query
     = 'query {'
     + 'viewer {'
     + 'libraryEntries (states: WATCHING) {'
