@@ -10,11 +10,11 @@ function annict_data(token, id) {
                         return elem.nextProgram !== null;
                     });
                     annictdata.sort((a, b) => {
-                        if (a.nextProgram?.startedAt < b.nextProgram?.startedAt) return -1;
-                        if (a.nextProgram?.startedAt > b.nextProgram?.startedAt) return 1;
+                        if (a.nextProgram?.startedAt < b.nextProgram?.startedAt) return 1;
+                        if (a.nextProgram?.startedAt > b.nextProgram?.startedAt) return -1;
                         return 0;
                     });
-                    sessionStorage.setItem('annict_data', JSON.stringify(annictdata));
+                    sessionStorage.setItem('annict_data', JSON.stringify(annictdata.concat(annictdata_null)));
                     sessionStorage.setItem('annict_data_null', JSON.stringify(annictdata_null));
                     window.location.replace(`/?id=${id}`)
                 })

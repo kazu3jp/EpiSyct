@@ -13,7 +13,7 @@ var query = `query {
                         episodesCount,
                         noEpisodes,
                         image{
-                        recommendedImageUrl
+                        facebookOgImageUrl
                     },
                     episodes(orderBy: {
                         direction: ASC, field: SORT_NUMBER

@@ -20,14 +20,14 @@ window.addEventListener('load', function () {
                 no_token.style.display = "none";
                 var annictdata = JSON.parse(sessionStorage.getItem('annict_data'));
                 //見てるアニメがない場合
-                if (!annictdata.viewer.works.nodes.length) {
+                if (!annictdata.length) {
                     episode_back.style.display = "none";
                 } else {
                     none_watch.style.display = "none";
                     //メニュー
                     other_works(annictdata);
                     //imgが有効か
-                    checkIfImageExists(annictdata.viewer.works.nodes[inpid].image.facebookOgImageUrl)
+                    checkIfImageExists(annictdata[inpid].work.image.facebookOgImageUrl)
                         .then((url) => {
                             document.getElementById("img").src = url;
                         })
@@ -35,12 +35,12 @@ window.addEventListener('load', function () {
                             document.getElementById("img").src = 'image/no_image.png';
                         });
                     //タイトル
-                    document.getElementById("title").innerHTML = annictdata.viewer.works.nodes[inpid].title;
+                    document.getElementById("title").innerHTML = annictdata[inpid].work.title;
                     //エピソード
-                    var annictdata_episodes = annictdata.viewer.works.nodes[inpid].episodes.nodes.filter((item) => item.viewerDidTrack !== true);
+                    var annictdata_episodes = annictdata[inpid].work.episodes.nodes.filter((item) => item.viewerDidTrack !== true);
                     //エピソードがないときボタン非表示
                     const watch_epi_button = document.getElementById("watch_episode_button");
-                    if (annictdata.viewer.works.nodes[inpid].noEpisodes == true) {
+                    if (annictdata[inpid].work.noEpisodes == true) {
                         document.getElementById("top_episode_title").innerHTML = "エピソードが存在しません。";
                         other_episode_card_open.style.display = "none";
                         right_box.style.display = "none";
@@ -108,7 +108,7 @@ function logout() {
 function watch_episode(id) {
     document.getElementById(`watch_button_msg_${id}`).innerHTML = "記録中…";
     var annictdata = JSON.parse(sessionStorage.getItem('annict_data'))
-    var annictdata_episodes = annictdata.viewer.works.nodes[inpid].episodes.nodes.filter((item) => item.viewerDidTrack !== true)
+    var annictdata_episodes = annictdata[inpid].work.episodes.nodes.filter((item) => item.viewerDidTrack !== true)
     var annictdata_episodes_id = annictdata_episodes[id].id
     var token = localStorage.getItem('token')
     try {
@@ -128,7 +128,7 @@ function watch_episode(id) {
 function watch_multiple_episode(id) {
     document.getElementById(`watch_button_msg_${id}`).innerHTML = "記録中…";
     var annictdata = JSON.parse(sessionStorage.getItem('annict_data'))
-    var annictdata_episodes = annictdata.viewer.works.nodes[inpid].episodes.nodes.filter((item) => item.viewerDidTrack !== true)
+    var annictdata_episodes = annictdata[inpid].work.episodes.nodes.filter((item) => item.viewerDidTrack !== true)
     var token = localStorage.getItem('token')
     var plusquery = ""
     for (i = 0; i < id + 1; i++) {
@@ -155,7 +155,7 @@ function watch_work() {
     var annictdata = JSON.parse(sessionStorage.getItem('annict_data'))
     var token = localStorage.getItem('token')
     try {
-        axios.post("https://api.annict.com/graphql", { query: `mutation{updateStatus(input: {workId: "${annictdata.viewer.works.nodes[inpid].id}",state: WATCHED}) {work{annictId}}}` }, { headers: { Authorization: "bearer " + token } },)
+        axios.post("https://api.annict.com/graphql", { query: `mutation{updateStatus(input: {workId: "${annictdata[inpid].work.id}",state: WATCHED}) {work{annictId}}}` }, { headers: { Authorization: "bearer " + token } },)
             .then(() => {
                 document.getElementById("watch_work_button_msg").innerHTML = "変更しました！";
                 annict_data(localStorage.getItem('token'), 0)
