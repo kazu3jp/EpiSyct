@@ -68,14 +68,7 @@ window.addEventListener('load', function () {
                         var top_episode_startedAt = (annictdata[inpid].nextProgram == null) ? "" : japanDateTime;
                         document.getElementById("top_episode_time").innerHTML = (top_episode_startedAt == null) ? "" : top_episode_startedAt.toLocaleString();
                         const currentUTCDate = new Date();
-                        const hoursLaterUTC = new Date(
-                            currentUTCDate.getUTCFullYear(),
-                            currentUTCDate.getUTCMonth(),
-                            currentUTCDate.getUTCDate(),
-                            currentUTCDate.getUTCHours(),
-                            currentUTCDate.getUTCMinutes(),
-                        );
-                        var top_episode_startedAt_info_time = (annictdata[inpid].nextProgram == null) ? "" : ((annictDateTime.getFullYear() * 360) + (annictDateTime.getMonth() * 30) + annictDateTime.getDate()) - ((hoursLaterUTC.getFullYear() * 360) + (hoursLaterUTC.getMonth() * 30) + hoursLaterUTC.getDate());
+                        var top_episode_startedAt_info_time = (annictdata[inpid].nextProgram == null) ? "" : ((annictDateTime.getFullYear() * 360) + (annictDateTime.getMonth() * 30) + annictDateTime.getDate()) - ((currentUTCDate.getUTCFullYear() * 360) + (currentUTCDate.getUTCMonth() * 30) + currentUTCDate.getUTCDate());
                         console.log(annictDateTime.getHours())
                         console.log(top_episode_startedAt_info_time)
 
@@ -85,9 +78,9 @@ window.addEventListener('load', function () {
                         if (top_episode_startedAt_info_time > 1) {
                             var top_episode_startedAt_info = ""
                         } else if (top_episode_startedAt_info_time === 1) {
-                            if (annictDateTime.getHours() >= 5) {
+                            if (annictDateTime.getHours() - currentUTCDate.getUTCHours() >= 5) {
                                 var top_episode_startedAt_info = tomorrow
-                            } else if (annictDateTime.getHours() <= 5){
+                            } else if (annictDateTime.getHours() - currentUTCDate.getUTCHours() <= 5) {
                                 var top_episode_startedAt_info = today
                             }
                         } else if (top_episode_startedAt_info_time === 0) {
