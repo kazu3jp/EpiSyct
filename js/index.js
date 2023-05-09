@@ -56,7 +56,7 @@ window.addEventListener('load', function () {
                         document.getElementById("top_episode_number").innerHTML = "─" + annictdata_episodes[0].numberText + "─";
                         document.getElementById("top_episode_title").innerHTML = (annictdata_episodes[0].title == null) ? "" : annictdata_episodes[0].title;
                         document.getElementById("top_episode_channel").innerHTML = (annictdata[inpid].nextProgram == null) ? "" : annictdata[inpid].nextProgram.channel.name;
-                        const annictDateTime = new Date(annictdata[inpid].nextProgram.startedAt)
+                        const annictDateTime = new Date(annictdata[inpid].nextProgram?.startedAt)
                         const japanDateTime = annictDateTime.toLocaleString('ja-JP', {
                             timeZone: 'Asia/Tokyo',
                             year: 'numeric',
