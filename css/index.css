@@ -137,6 +137,19 @@ body {
   margin: 10px 0;
 }
 
+.top_episode_info {
+  margin-inline: auto;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  color: rgba(245, 245, 245, 0.8);
+  font-size: 11px;
+}
+
+.top_episode_info p {
+  margin: 0 5px;
+}
+
 .other_episode_card {
   display: none;
   padding-top: 1px;

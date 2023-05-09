@@ -55,6 +55,47 @@ window.addEventListener('load', function () {
                     } else { //エピソードありの処理
                         document.getElementById("top_episode_number").innerHTML = "─" + annictdata_episodes[0].numberText + "─";
                         document.getElementById("top_episode_title").innerHTML = (annictdata_episodes[0].title == null) ? "" : annictdata_episodes[0].title;
+                        document.getElementById("top_episode_channel").innerHTML = (annictdata[inpid].nextProgram == null) ? "" : annictdata[inpid].nextProgram.channel.name;
+                        const annictDateTime = new Date(annictdata[inpid].nextProgram.startedAt)
+                        const japanDateTime = annictDateTime.toLocaleString('ja-JP', {
+                            timeZone: 'Asia/Tokyo',
+                            year: 'numeric',
+                            month: '2-digit',
+                            day: '2-digit',
+                            hour: '2-digit',
+                            minute: '2-digit'
+                          });
+                        var top_episode_startedAt = (annictdata[inpid].nextProgram == null) ? "" : japanDateTime;
+                        document.getElementById("top_episode_time").innerHTML = (top_episode_startedAt == null) ? "" : top_episode_startedAt.toLocaleString();
+                        const currentUTCDate = new Date();
+                        const hoursLaterUTC = new Date(
+                            currentUTCDate.getUTCFullYear(),
+                            currentUTCDate.getUTCMonth(),
+                            currentUTCDate.getUTCDate(),
+                            currentUTCDate.getUTCHours() + 24, //25時のときの日付を今日にするために世界協定時から+24時間(要調節)
+                            currentUTCDate.getUTCMinutes(),
+                            currentUTCDate.getUTCSeconds()
+                          );
+                        var top_episode_startedAt_info_time = (annictdata[inpid].nextProgram == null) ? "" : annictDateTime.getDate() - hoursLaterUTC.getDate();
+                        console.log(top_episode_startedAt_info_time)
+
+                        var tomorrow = `<dev style="margin: 0 5px; padding: 0 5px; background-color: rgb(6, 182, 212); border-radius: 5px;">明日</dev>`
+                        var today = `<dev style="margin: 0 5px; padding: 0 5px; background-color: rgb(220, 53, 69); border-radius: 5px;">今日</dev>`
+                        var end = `<dev style="margin: 0 5px; padding: 0 5px; background-color: rgb(25, 135, 84); border-radius: 5px;">終了</dev>`
+                        if (top_episode_startedAt_info_time > 1) {
+                            var top_episode_startedAt_info = ""
+                        } else if (top_episode_startedAt_info_time === 1) {
+                            var top_episode_startedAt_info = tomorrow
+                        } else if (top_episode_startedAt_info_time === 0) {
+                            var top_episode_startedAt_info = today
+                        } else if (top_episode_startedAt_info_time < 0) {
+                            var top_episode_startedAt_info = end
+                        } else {
+                            var top_episode_startedAt_info = ""
+                        };
+                        var top_episode_info = document.getElementById('top_episode_info')
+                        top_episode_info.insertAdjacentHTML('beforeend', top_episode_startedAt_info);
+
                         if (annictdata_episodes.length == 1) {
                             other_episode_card_open.style.display = "none";
                             other_episode_card.style.display = "none";
