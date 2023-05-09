@@ -64,7 +64,7 @@ window.addEventListener('load', function () {
                             day: '2-digit',
                             hour: '2-digit',
                             minute: '2-digit'
-                          });
+                        });
                         var top_episode_startedAt = (annictdata[inpid].nextProgram == null) ? "" : japanDateTime;
                         document.getElementById("top_episode_time").innerHTML = (top_episode_startedAt == null) ? "" : top_episode_startedAt.toLocaleString();
                         const currentUTCDate = new Date();
@@ -72,11 +72,11 @@ window.addEventListener('load', function () {
                             currentUTCDate.getUTCFullYear(),
                             currentUTCDate.getUTCMonth(),
                             currentUTCDate.getUTCDate(),
-                            currentUTCDate.getUTCHours() + 24, //25時のときの日付を今日にするために世界協定時から+24時間(要調節)
+                            currentUTCDate.getUTCHours(),
                             currentUTCDate.getUTCMinutes(),
-                            currentUTCDate.getUTCSeconds()
-                          );
-                        var top_episode_startedAt_info_time = (annictdata[inpid].nextProgram == null) ? "" : annictDateTime.getDate() - hoursLaterUTC.getDate();
+                        );
+                        var top_episode_startedAt_info_time = (annictdata[inpid].nextProgram == null) ? "" : ((annictDateTime.getFullYear() * 360) + (annictDateTime.getMonth() * 30) + annictDateTime.getDate()) - ((hoursLaterUTC.getFullYear() * 360) + (hoursLaterUTC.getMonth() * 30) + hoursLaterUTC.getDate());
+                        console.log(annictDateTime.getHours())
                         console.log(top_episode_startedAt_info_time)
 
                         var tomorrow = `<dev style="margin: 0 5px; padding: 0 5px; background-color: rgb(6, 182, 212); border-radius: 5px;">明日</dev>`
@@ -85,7 +85,11 @@ window.addEventListener('load', function () {
                         if (top_episode_startedAt_info_time > 1) {
                             var top_episode_startedAt_info = ""
                         } else if (top_episode_startedAt_info_time === 1) {
-                            var top_episode_startedAt_info = tomorrow
+                            if (annictDateTime.getHours() >= 5) {
+                                var top_episode_startedAt_info = tomorrow
+                            } else if (annictDateTime.getHours() <= 5){
+                                var top_episode_startedAt_info = today
+                            }
                         } else if (top_episode_startedAt_info_time === 0) {
                             var top_episode_startedAt_info = today
                         } else if (top_episode_startedAt_info_time < 0) {
