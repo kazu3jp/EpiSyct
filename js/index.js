@@ -56,6 +56,7 @@ window.addEventListener('load', function () {
                         document.getElementById("top_episode_number").innerHTML = "─" + annictdata_episodes[0].numberText + "─";
                         document.getElementById("top_episode_title").innerHTML = (annictdata_episodes[0].title == null) ? "" : annictdata_episodes[0].title;
                         document.getElementById("top_episode_channel").innerHTML = (annictdata[inpid].nextProgram == null) ? "" : annictdata[inpid].nextProgram.channel.name;
+                        //放送,配信時間
                         const annictDateTime = new Date(annictdata[inpid].nextProgram?.startedAt)
                         const japanDateTime = annictDateTime.toLocaleString('ja-JP', {
                             timeZone: 'Asia/Tokyo',
@@ -68,19 +69,16 @@ window.addEventListener('load', function () {
                         var top_episode_startedAt = (annictdata[inpid].nextProgram == null) ? "" : japanDateTime;
                         document.getElementById("top_episode_time").innerHTML = (top_episode_startedAt == null) ? "" : top_episode_startedAt.toLocaleString();
                         const currentUTCDate = new Date();
-                        var top_episode_startedAt_info_time = (annictdata[inpid].nextProgram == null) ? "" : ((annictDateTime.getFullYear() * 360) + (annictDateTime.getMonth() * 30) + annictDateTime.getDate()) - ((currentUTCDate.getUTCFullYear() * 360) + (currentUTCDate.getUTCMonth() * 30) + currentUTCDate.getUTCDate());
-                        console.log(annictDateTime.getHours())
-                        console.log(top_episode_startedAt_info_time)
-
+                        var top_episode_startedAt_info_time = (annictdata[inpid].nextProgram == null) ? "" : ((annictDateTime.getFullYear() * 360) + (annictDateTime.getMonth() * 30) + annictDateTime.getDate()) - ((currentUTCDate.getFullYear() * 360) + (currentUTCDate.getMonth() * 30) + currentUTCDate.getDate());
                         var tomorrow = `<dev style="margin: 0 5px; padding: 0 5px; background-color: rgb(6, 182, 212); border-radius: 5px;">明日</dev>`
                         var today = `<dev style="margin: 0 5px; padding: 0 5px; background-color: rgb(220, 53, 69); border-radius: 5px;">今日</dev>`
                         var end = `<dev style="margin: 0 5px; padding: 0 5px; background-color: rgb(25, 135, 84); border-radius: 5px;">終了</dev>`
                         if (top_episode_startedAt_info_time > 1) {
                             var top_episode_startedAt_info = ""
                         } else if (top_episode_startedAt_info_time === 1) {
-                            if (annictDateTime.getHours() - currentUTCDate.getUTCHours() >= 5) {
+                            if (annictDateTime.getHours() >= 5) {
                                 var top_episode_startedAt_info = tomorrow
-                            } else if (annictDateTime.getHours() - currentUTCDate.getUTCHours() <= 5) {
+                            } else if (annictDateTime.getHours() <= 5) {
                                 var top_episode_startedAt_info = today
                             }
                         } else if (top_episode_startedAt_info_time === 0) {
