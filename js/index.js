@@ -72,6 +72,7 @@ window.addEventListener('load', function () {
                         var top_episode_startedAt_info_time = (annictdata[inpid].nextProgram == null) ? "" : ((annictDateTime.getFullYear() * 360) + (annictDateTime.getMonth() * 30) + annictDateTime.getDate()) - ((currentUTCDate.getFullYear() * 360) + (currentUTCDate.getMonth() * 30) + currentUTCDate.getDate());
                         var tomorrow = `<dev style="margin: 0 5px; padding: 0 5px; background-color: rgb(6, 182, 212); border-radius: 5px;">明日</dev>`
                         var today = `<dev style="margin: 0 5px; padding: 0 5px; background-color: rgb(220, 53, 69); border-radius: 5px;">今日</dev>`
+                        var yesterday = `<dev style="margin: 0 5px; padding: 0 5px; background-color: rgb(25, 135, 84); border-radius: 5px;">昨日</dev>`
                         var end = `<dev style="margin: 0 5px; padding: 0 5px; background-color: rgb(25, 135, 84); border-radius: 5px;">終了</dev>`
                         if (top_episode_startedAt_info_time > 1) {
                             var top_episode_startedAt_info = ""
@@ -82,7 +83,11 @@ window.addEventListener('load', function () {
                                 var top_episode_startedAt_info = today
                             }
                         } else if (top_episode_startedAt_info_time === 0) {
-                            var top_episode_startedAt_info = today
+                            if (annictDateTime.getHours() >= 5) {
+                                var top_episode_startedAt_info = today
+                            } else if (annictDateTime.getHours() <= 5) {
+                                var top_episode_startedAt_info = yesterday
+                            }
                         } else if (top_episode_startedAt_info_time < 0) {
                             var top_episode_startedAt_info = end
                         } else {
