@@ -237,3 +237,12 @@ $('.menu').on('click', function () {
         $('.logout_button').css('display', 'none')
     }
 });
+
+$(function () {
+    $('#openModal').click(function () {
+        $('#modalArea').fadeIn();
+    });
+    $('#closeModal , #modalBg').click(function () {
+        $('#modalArea').fadeOut();
+    });
+});

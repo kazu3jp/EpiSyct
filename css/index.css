@@ -423,6 +423,55 @@ body {
   color: #666;
 }
 
+.footer {
+  position: relative;
+}
+
+.modalArea {
+  display: none;
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.modalBg {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(30, 30, 30, 0.9);
+}
+
+.modalContents p {
+  font-size: small;
+}
+
+.modalWrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 70%;
+  max-width: 500px;
+  padding: 10px 30px;
+  background-color: #fff;
+}
+
+.closeModal {
+  position: absolute;
+  top: 0.5rem;
+  right: 1rem;
+  cursor: pointer;
+}
+
+#openModal {
+  color: #fff;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
 /* 960px以上*/
 @media screen and (min-width: 960px) {
   .episode_back {
