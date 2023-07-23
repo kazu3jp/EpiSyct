@@ -20,14 +20,14 @@ window.addEventListener('load', function () {
                 no_token.style.display = "none";
                 var annictdata = JSON.parse(sessionStorage.getItem('annict_data'));
                 //見てるアニメがない場合
-                if (!annictdata.viewer.works.nodes.length) {
+                if (!annictdata.length) {
                     episode_back.style.display = "none";
                 } else {
                     none_watch.style.display = "none";
                     //メニュー
                     other_works(annictdata);
                     //imgが有効か
-                    checkIfImageExists(annictdata.viewer.works.nodes[inpid].image.facebookOgImageUrl)
+                    checkIfImageExists(annictdata[inpid].work.image.facebookOgImageUrl)
                         .then((url) => {
                             document.getElementById("img").src = url;
                         })
@@ -35,12 +35,12 @@ window.addEventListener('load', function () {
                             document.getElementById("img").src = 'image/no_image.png';
                         });
                     //タイトル
-                    document.getElementById("title").innerHTML = annictdata.viewer.works.nodes[inpid].title;
+                    document.getElementById("title").innerHTML = annictdata[inpid].work.title;
                     //エピソード
-                    var annictdata_episodes = annictdata.viewer.works.nodes[inpid].episodes.nodes.filter((item) => item.viewerDidTrack !== true);
+                    var annictdata_episodes = annictdata[inpid].work.episodes.nodes.filter((item) => item.viewerDidTrack !== true);
                     //エピソードがないときボタン非表示
                     const watch_epi_button = document.getElementById("watch_episode_button");
-                    if (annictdata.viewer.works.nodes[inpid].noEpisodes == true) {
+                    if (annictdata[inpid].work.noEpisodes == true) {
                         document.getElementById("top_episode_title").innerHTML = "エピソードが存在しません。";
                         other_episode_card_open.style.display = "none";
                         right_box.style.display = "none";
@@ -55,6 +55,47 @@ window.addEventListener('load', function () {
                     } else { //エピソードありの処理
                         document.getElementById("top_episode_number").innerHTML = "─" + annictdata_episodes[0].numberText + "─";
                         document.getElementById("top_episode_title").innerHTML = (annictdata_episodes[0].title == null) ? "" : annictdata_episodes[0].title;
+                        document.getElementById("top_episode_channel").innerHTML = (annictdata[inpid].nextProgram == null) ? "" : annictdata[inpid].nextProgram.channel.name;
+                        //放送,配信時間
+                        const annictDateTime = new Date(annictdata[inpid].nextProgram?.startedAt)
+                        const japanDateTime = annictDateTime.toLocaleString('ja-JP', {
+                            timeZone: 'Asia/Tokyo',
+                            year: 'numeric',
+                            month: '2-digit',
+                            day: '2-digit',
+                            hour: '2-digit',
+                            minute: '2-digit'
+                        });
+                        var top_episode_startedAt = (annictdata[inpid].nextProgram == null) ? "" : japanDateTime;
+                        document.getElementById("top_episode_time").innerHTML = (top_episode_startedAt == null) ? "" : top_episode_startedAt.toLocaleString();
+                        const currentUTCDate = new Date();
+                        var top_episode_startedAt_info_time = (annictdata[inpid].nextProgram == null) ? "" : ((annictDateTime.getFullYear() * 360) + (annictDateTime.getMonth() * 30) + annictDateTime.getDate()) - ((currentUTCDate.getFullYear() * 360) + (currentUTCDate.getMonth() * 30) + currentUTCDate.getDate());
+                        var tomorrow = `<dev style="margin: 0 5px; padding: 0 5px; background-color: rgb(6, 182, 212); border-radius: 5px;">明日</dev>`
+                        var today = `<dev style="margin: 0 5px; padding: 0 5px; background-color: rgb(220, 53, 69); border-radius: 5px;">今日</dev>`
+                        var yesterday = `<dev style="margin: 0 5px; padding: 0 5px; background-color: rgb(25, 135, 84); border-radius: 5px;">昨日</dev>`
+                        var end = `<dev style="margin: 0 5px; padding: 0 5px; background-color: rgb(25, 135, 84); border-radius: 5px;">終了</dev>`
+                        if (top_episode_startedAt_info_time > 1) {
+                            var top_episode_startedAt_info = ""
+                        } else if (top_episode_startedAt_info_time === 1) {
+                            if (annictDateTime.getHours() >= 5) {
+                                var top_episode_startedAt_info = tomorrow
+                            } else if (annictDateTime.getHours() <= 5) {
+                                var top_episode_startedAt_info = today
+                            }
+                        } else if (top_episode_startedAt_info_time === 0) {
+                            if (annictDateTime.getHours() >= 5) {
+                                var top_episode_startedAt_info = today
+                            } else if (annictDateTime.getHours() <= 5) {
+                                var top_episode_startedAt_info = yesterday
+                            }
+                        } else if (top_episode_startedAt_info_time < 0) {
+                            var top_episode_startedAt_info = end
+                        } else {
+                            var top_episode_startedAt_info = ""
+                        };
+                        var top_episode_info = document.getElementById('top_episode_info')
+                        top_episode_info.insertAdjacentHTML('beforeend', top_episode_startedAt_info);
+
                         if (annictdata_episodes.length == 1) {
                             other_episode_card_open.style.display = "none";
                             other_episode_card.style.display = "none";
@@ -108,7 +149,7 @@ function logout() {
 function watch_episode(id) {
     document.getElementById(`watch_button_msg_${id}`).innerHTML = "記録中…";
     var annictdata = JSON.parse(sessionStorage.getItem('annict_data'))
-    var annictdata_episodes = annictdata.viewer.works.nodes[inpid].episodes.nodes.filter((item) => item.viewerDidTrack !== true)
+    var annictdata_episodes = annictdata[inpid].work.episodes.nodes.filter((item) => item.viewerDidTrack !== true)
     var annictdata_episodes_id = annictdata_episodes[id].id
     var token = localStorage.getItem('token')
     try {
@@ -128,7 +169,7 @@ function watch_episode(id) {
 function watch_multiple_episode(id) {
     document.getElementById(`watch_button_msg_${id}`).innerHTML = "記録中…";
     var annictdata = JSON.parse(sessionStorage.getItem('annict_data'))
-    var annictdata_episodes = annictdata.viewer.works.nodes[inpid].episodes.nodes.filter((item) => item.viewerDidTrack !== true)
+    var annictdata_episodes = annictdata[inpid].work.episodes.nodes.filter((item) => item.viewerDidTrack !== true)
     var token = localStorage.getItem('token')
     var plusquery = ""
     for (i = 0; i < id + 1; i++) {
@@ -155,7 +196,7 @@ function watch_work() {
     var annictdata = JSON.parse(sessionStorage.getItem('annict_data'))
     var token = localStorage.getItem('token')
     try {
-        axios.post("https://api.annict.com/graphql", { query: `mutation{updateStatus(input: {workId: "${annictdata.viewer.works.nodes[inpid].id}",state: WATCHED}) {work{annictId}}}` }, { headers: { Authorization: "bearer " + token } },)
+        axios.post("https://api.annict.com/graphql", { query: `mutation{updateStatus(input: {workId: "${annictdata[inpid].work.id}",state: WATCHED}) {work{annictId}}}` }, { headers: { Authorization: "bearer " + token } },)
             .then(() => {
                 document.getElementById("watch_work_button_msg").innerHTML = "変更しました！";
                 annict_data(localStorage.getItem('token'), 0)
