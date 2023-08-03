@@ -524,3 +524,14 @@ body {
 .token-input-field:focus+.token-input-label+.token-input-highlight {
   width: 100%;
 }
+
+
+footer {
+  margin: 15px 0;
+  text-align: center;
+}
+
+.google_ana {
+  font-size: 15px;
+  color: #959595;
+}
