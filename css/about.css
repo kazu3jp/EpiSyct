@@ -15,10 +15,19 @@ body {
 }
 
 .about_top_text h1 {
-    font-size: 60px;
+    font-size: 25px;
     margin-bottom: 0px;
     text-align: center;
     color: hsla(0, 0%, 96%, 0.8);
+}
+
+@media screen and (min-width: 960px) {
+    .about_top_text h1 {
+        font-size: 60px;
+        margin-bottom: 0px;
+        text-align: center;
+        color: hsla(0, 0%, 96%, 0.8);
+    }
 }
 
 .about_top_text p {
@@ -26,7 +35,8 @@ body {
     color: hsla(0, 0%, 96%, 0.8);
 }
 
-.about_login, .about_data {
+.about_login,
+.about_data {
     width: fit-content;
     margin: auto;
 }
