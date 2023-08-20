@@ -17,6 +17,7 @@ window.addEventListener('load', function () {
     if (params.has('id')) {
         if (sessionStorage.hasOwnProperty('annict_data')) {
             if (sessionStorage.getItem('annict_data') !== null) {
+                top_page.style.display = "none";
                 no_token.style.display = "none";
                 var annictdata = JSON.parse(sessionStorage.getItem('annict_data'));
                 //見てるアニメがない場合
@@ -121,8 +122,9 @@ window.addEventListener('load', function () {
         } else {
             episode_back.style.display = "none";
             none_watch.style.display = "none";
-            no_token.style.display = "";
+            no_token.style.display = "none";
             header.style.display = "none";
+            top_page.style.display = ""
         }
     }
     setTimeout(function () {
@@ -237,3 +239,8 @@ $('.menu').on('click', function () {
         $('.logout_button').css('display', 'none')
     }
 });
+
+function login_page_display() {
+    top_page.style.display = "none"
+    no_token.style.display = "";
+}

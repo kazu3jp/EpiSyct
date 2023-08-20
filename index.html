@@ -105,12 +105,21 @@
                 </div>
             </div>
         </article>
+        <div class="top_page" id="top_page">
+            <div class="about_top_card">
+                <h1 class="about_top_text">見たエピソードを簡単に記録しよう。</h1>
+                <p class="about_top_text_about">EpiSyct
+                    (エピシクト)は、見てるアニメのエピソード記録に特化したAnnict非公式クライアントです。<br>スマホで簡単に記録できることが特徴です。</p>
+                <div class="top_page_button">
+                    <button class="treatment" onclick="location.href='./about.html'"> 使い方 </button>
+                    <button class="login" onclick="login_page_display();"> ログイン </button>
+                </div>
+            </div>
+        </div>
         <div class="no_token" id="no_token">
             <a style="display: block;">個人用アクセストークンでログイン</a>
             <a style="font-size: 12px; display: block;">トークンのスコープは｢読み込み + 書き込み｣で作成してください</a>
             <a style="font-size: 12px; display: block;">ログアウトするまでトークン情報は保存されます。</a>
-            <a style="font-size: 12px; display: block; color: whitesmoke"
-                href="https://github.com/kazu3jp/EpiSyct/blob/main/About.md">このサイトの使い方</a>
             <a id="error_msg" style="display: none; color: red;">トークンが正しくないようです。</a>
             <a id="logout_msg" style="display: none; color: green;">ログアウトしました！</a>
             <div class="token-input">
