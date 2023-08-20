@@ -1,0 +1,44 @@
+* {
+    /*スクロールバー非表示（Edge）*/
+    -ms-overflow-style: none;
+    /*スクロールバー非表示（Firefox）*/
+    scrollbar-width: none;
+}
+
+/*スクロールバー非表示（Chrome-Safari）*/
+*::-webkit-scrollbar {
+    display: none;
+}
+
+body {
+    background-color: #282828;
+}
+
+.about_top_text h1 {
+    font-size: 60px;
+    margin-bottom: 0px;
+    text-align: center;
+    color: hsla(0, 0%, 96%, 0.8);
+}
+
+.about_top_text p {
+    text-align: center;
+    color: hsla(0, 0%, 96%, 0.8);
+}
+
+.about_login, .about_data {
+    width: fit-content;
+    margin: auto;
+}
+
+h2,
+ol,
+li,
+p,
+a {
+    color: hsla(0, 0%, 96%, 0.8);
+}
+
+img {
+    width: 100%;
+}
