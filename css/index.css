@@ -562,6 +562,7 @@ button:active {
   width: 100%;
   padding: 10px;
   font-size: 16px;
+  color: #ccc;
   border: none;
   border-bottom: 2px solid #ccc;
   outline: none;
