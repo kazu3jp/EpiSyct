@@ -1,4 +1,4 @@
-function annict_data(token, id) {
+function annict_data(token, annict_data_id) {
     if (token != null) {
         try {
             axios.post("https://api.annict.com/graphql", { query: query }, { headers: { Authorization: "bearer " + token } },)
@@ -15,7 +15,12 @@ function annict_data(token, id) {
                         return 0;
                     });
                     sessionStorage.setItem('annict_data', JSON.stringify(annictdata.concat(annictdata_null)));
-                    window.location.replace(`/?id=${id}`)
+                    var annict_data_id_list = annictdata.concat(annictdata_null).map(obj => obj.work.id);
+                    if (annict_data_id === 0) {
+                        window.location.replace(`/?id=0`);
+                    } else {
+                        window.location.replace(`/?id=${annict_data_id_list.indexOf(annict_data_id)}`);
+                    }
                 })
                 .catch(() => {
                     episode_back.style.display = "none";

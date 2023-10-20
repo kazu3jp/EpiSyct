@@ -158,7 +158,7 @@ function watch_episode(id) {
         axios.post("https://api.annict.com/graphql", { query: `mutation{createRecord(input:{episodeId:"${annictdata_episodes_id}",}){record{annictId,episode{title}}}}` }, { headers: { Authorization: "bearer " + token } },)
             .then(() => {
                 document.getElementById(`watch_button_msg_${id}`).innerHTML = "記録しました！";
-                annict_data(localStorage.getItem('token'), inpid)
+                annict_data(localStorage.getItem('token'), annictdata[inpid].work.id)
             })
             .catch(() => {
                 document.getElementById(`watch_button_msg_${id}`).innerHTML = "記録できませんでした…";
@@ -183,7 +183,7 @@ function watch_multiple_episode(id) {
         axios.post("https://api.annict.com/graphql", { query: endquery }, { headers: { Authorization: "bearer " + token } },)
             .then(() => {
                 document.getElementById(`watch_button_msg_${id}`).innerHTML = "記録しました！";
-                annict_data(localStorage.getItem('token'), inpid)
+                annict_data(localStorage.getItem('token'), annictdata[inpid].work.id)
             })
             .catch(() => {
                 document.getElementById(`watch_button_msg_${id}`).innerHTML = "記録できませんでした…";
