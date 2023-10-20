@@ -15,7 +15,6 @@ function annict_data(token, id) {
                         return 0;
                     });
                     sessionStorage.setItem('annict_data', JSON.stringify(annictdata.concat(annictdata_null)));
-                    sessionStorage.setItem('annict_data_null', JSON.stringify(annictdata_null));
                     window.location.replace(`/?id=${id}`)
                 })
                 .catch(() => {
