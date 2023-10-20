@@ -16,10 +16,10 @@ function annict_data(token, annict_data_id) {
                     });
                     sessionStorage.setItem('annict_data', JSON.stringify(annictdata.concat(annictdata_null)));
                     var annict_data_id_list = annictdata.concat(annictdata_null).map(obj => obj.work.id);
-                    if (annict_data_id === 0) {
-                        window.location.replace(`/?id=0`);
-                    } else {
+                    if (annict_data_id !== 0) {
                         window.location.replace(`/?id=${annict_data_id_list.indexOf(annict_data_id)}`);
+                    } else {
+                        window.location.replace(`/?id=0`);
                     }
                 })
                 .catch(() => {
