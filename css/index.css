@@ -58,7 +58,7 @@ body {
   height: auto;
   vertical-align: middle;
   border-radius: 5px;
-  box-shadow: #a31545 0px 0px 20px 5px;
+  box-shadow: #D51C5B 0px 0px 20px 5px;
 }
 
 .none_watch {
@@ -205,23 +205,23 @@ body {
   padding: 5px 20%;
   border-radius: 50px;
   border: 0;
-  background-color: #a31545;
-  box-shadow: hsla(340, 100%, 57%, 0.64) 0px 7px 29px 0px;
+  background-color: #D51C5B;
+  box-shadow: hsla(340,99%,56%,0.84) 0px 7px 29px 0px;
   text-transform: uppercase;
   font-size: 13px;
   transition: all 0.5s ease;
 }
 
 .watch_episode_button:hover {
-  background-color: #dd5f89;
-  color: #a31545;
-  box-shadow: #dd5f89 0px 7px 29px 0px;
+  background-color: #DD5F89;
+  color: #D51C5B;
+  box-shadow: #DD5F89 0px 7px 29px 0px;
 }
 
 .watch_episode_button:active {
-  background-color: #dd5f89;
-  color: #a31545;
-  box-shadow: #dd5f89 0px 0px 0px 0px;
+  background-color: #DD5F89;
+  color: #D51C5B;
+  box-shadow: #DD5F89 0px 0px 0px 0px;
   transform: translateY(5px);
   transition: 100ms;
 }
@@ -236,8 +236,8 @@ body {
   padding: 5px 5%;
   border-radius: 50px;
   border: 0;
-  background-color: #a31545;
-  box-shadow: hsla(340, 100%, 57%, 0.64) 0px 7px 29px 0px;
+  background-color: #D51C5B;
+  box-shadow: hsla(340,99%,56%,0.84) 0px 7px 29px 0px;
   text-transform: uppercase;
   font-size: 13px;
   transition: all 0.5s ease;
@@ -245,15 +245,15 @@ body {
 }
 
 .watch_episode_list_button:hover {
-  background-color: #dd5f89;
-  color: #a31545;
-  box-shadow: #dd5f89 0px 7px 29px 0px;
+  background-color: #DD5F89;
+  color: #D51C5B;
+  box-shadow: #DD5F89 0px 7px 29px 0px;
 }
 
 .watch_episode_list_button:active {
-  background-color: #dd5f89;
-  color: #a31545;
-  box-shadow: #dd5f89 0px 0px 0px 0px;
+  background-color: #DD5F89;
+  color: #D51C5B;
+  box-shadow: #DD5F89 0px 0px 0px 0px;
   transform: translateY(5px);
   transition: 100ms;
 }
@@ -262,8 +262,8 @@ body {
   padding: 5px 20%;
   border-radius: 50px;
   border: 0;
-  background-color: #a31545;
-  box-shadow: hsla(340, 100%, 57%, 0.64) 0px 7px 29px 0px;
+  background-color: #D51C5B;
+  box-shadow: hsla(340,99%,56%,0.84) 0px 7px 29px 0px;
   text-transform: uppercase;
   font-size: 13px;
   transition: all 0.5s ease;
@@ -271,15 +271,15 @@ body {
 }
 
 .watch_work_button:hover {
-  background-color: #dd5f89;
-  color: #a31545;
-  box-shadow: #dd5f89 0px 7px 29px 0px;
+  background-color: #DD5F89;
+  color: #D51C5B;
+  box-shadow: #DD5F89 0px 7px 29px 0px;
 }
 
 .watch_work_button:active {
-  background-color: #dd5f89;
-  color: #a31545;
-  box-shadow: #dd5f89 0px 0px 0px 0px;
+  background-color: #DD5F89;
+  color: #D51C5B;
+  box-shadow: #DD5F89 0px 0px 0px 0px;
   transform: translateY(5px);
   transition: 100ms;
 }
@@ -289,8 +289,8 @@ body {
   padding: 5px 20%;
   border-radius: 50px;
   border: 0;
-  background-color: #a31545;
-  box-shadow: hsla(340, 100%, 57%, 0.64) 10px 2px 17px 0px;
+  background-color: #D51C5B;
+  box-shadow: hsla(340,99%,56%,0.84) 10px 2px 17px 0px;
   text-transform: uppercase;
   font-size: 13px;
   transition: all 0.5s ease;
@@ -298,15 +298,15 @@ body {
 }
 
 .logout_button:hover {
-  background-color: #dd5f89;
-  color: #a31545;
-  box-shadow: #dd5f89 10px 2px 17px 0px;
+  background-color: #DD5F89;
+  color: #D51C5B;
+  box-shadow: #DD5F89 10px 2px 17px 0px;
 }
 
 .logout_button:active {
-  background-color: #dd5f89;
-  color: #a31545;
-  box-shadow: #dd5f89 0px 0px 0px 0px;
+  background-color: #DD5F89;
+  color: #D51C5B;
+  box-shadow: #DD5F89 0px 0px 0px 0px;
   transform: translateY(5px);
   transition: 100ms;
 }
@@ -316,8 +316,8 @@ body {
   padding: 5px 10%;
   border-radius: 50px;
   border: 0;
-  background-color: #a31545;
-  box-shadow: hsla(340, 100%, 57%, 0.64) 10px 2px 17px 0px;
+  background-color: #D51C5B;
+  box-shadow: hsla(340,99%,56%,0.84) 10px 2px 17px 0px;
   text-transform: uppercase;
   font-size: 13px;
   transition: all 0.5s ease;
@@ -325,15 +325,15 @@ body {
 }
 
 .token_fome_button:hover {
-  background-color: #dd5f89;
-  color: #a31545;
-  box-shadow: #dd5f89 10px 2px 17px 0px;
+  background-color: #DD5F89;
+  color: #D51C5B;
+  box-shadow: #DD5F89 10px 2px 17px 0px;
 }
 
 .token_fome_button:active {
-  background-color: #dd5f89;
-  color: #a31545;
-  box-shadow: #dd5f89 0px 0px 0px 0px;
+  background-color: #DD5F89;
+  color: #D51C5B;
+  box-shadow: #DD5F89 0px 0px 0px 0px;
   transform: translateY(5px);
   transition: 100ms;
 }
@@ -465,15 +465,15 @@ body {
   font-size: 17px;
   padding: 0.5em 2em;
   border: transparent;
-  box-shadow: 0px 0px 5px 0.5px #a31545;
-  background: #a31545;
+  box-shadow: 0px 0px 5px 0.5px #D51C5B;
+  background: #D51C5B;
   color: white;
   border-radius: 4px;
 }
 
 .treatment:hover {
   background: rgb(2, 0, 36);
-  background: linear-gradient(90deg, #a31545 0%, #f91f6859 100%);
+  background: linear-gradient(90deg, #D51C5B 0%, #f91f6859 100%);
 }
 
 .login {
@@ -481,7 +481,7 @@ body {
   font-size: 17px;
   padding: 0.5em 2em;
   border: transparent;
-  box-shadow: 0px 0px 5px 0.5px #a31545;
+  box-shadow: 0px 0px 5px 0.5px #D51C5B;
   background: #282828;
   color: white;
   border-radius: 4px;
@@ -489,7 +489,7 @@ body {
 
 .login:hover {
   background: rgb(2, 0, 36);
-  background: linear-gradient(90deg, #a31545 0%, #f91f6859 100%);
+  background: linear-gradient(90deg, #D51C5B 0%, #f91f6859 100%);
 }
 
 button:active {
