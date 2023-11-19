@@ -20,11 +20,11 @@ window.addEventListener('load', function () {
                 top_page.style.display = "none";
                 no_token.style.display = "none";
                 var annictdata = JSON.parse(sessionStorage.getItem('annict_data'));
-                if (inpid in annictdata) {
-                    //見てるアニメがない場合
-                    if (!annictdata.length) {
-                        episode_back.style.display = "none";
-                    } else {
+                //見てるアニメがない場合
+                if (!annictdata.length) {
+                    episode_back.style.display = "none";
+                } else {
+                    if (inpid in annictdata) {
                         none_watch.style.display = "none";
                         //メニュー
                         other_works(annictdata);
@@ -106,13 +106,12 @@ window.addEventListener('load', function () {
                                 other_episode(annictdata_episodes.length, annictdata_episodes);
                             }
                         }
+                    } else {
+                        annict_data(localStorage.getItem('token'), 0)
                     }
-
                     setTimeout(function () {
                         spinner.classList.add('loaded');
                     }, 1000)
-                } else {
-                    annict_data(localStorage.getItem('token'), 0)
                 }
             } else {
                 annict_data(localStorage.getItem('token'), 0)
